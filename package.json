@@ -1,0 +1,25 @@
+{
+  "name": "proyectofrontend",
+  "version": "1.0.0",
+  "description": "\"# MusicWiki\"",
+  "main": "index.js",
+  "dependencies": {
+    "browser-sync": "^2.18.13",
+    "tooltip.js": "^1.1.5",
+    "popper.js": "^1.12.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "browser-sync": "browser-sync start --server --files \"./css/*.css\" \"./*.html\" \"js/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chelletjd/MusicWiki.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chelletjd/MusicWiki/issues"
+  },
+  "homepage": "https://github.com/chelletjd/MusicWiki#readme"
+}
