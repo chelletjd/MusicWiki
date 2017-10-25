@@ -10,23 +10,24 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="#">MusicWiki</a>
+	      <a class="navbar-brand" href="index.html">MusicWiki</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
 	    </div>
 
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li><a href="index.html">Inicio<span class="sr-only">(current)</span></a></li>
-          	<li class="active"><a href="artistas.html">Artistas</a></li>
-	        <li><a href="#">Albumes</a></li>
+	        <li><a href="#">Inicio</a></li>
+          	<li class="active"><a href="artistas.html">Busca tu musica Aqui</a></li>
 	        <li><a href="#">Musica Nueva<span class="sr-only">(current)</span></a></li>
-	        <li><a href="#">Registrate</a></li>
 	      </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li id="activar"><a href="#">Conectar con Spotify</a></li>
+        </ul>
 	    </div>
 	  </div>
 	</nav>
@@ -38,9 +39,10 @@
 					<div class="form-group">
 						<input id="artista" class="form-control mar" type="text" name="artista" placeholder="Buscar...">
 						<div class="">
-							<select class="form-control" id="select">
+							<select class="form-control" id="selector">
+							  <option disabled selected value>-- Seleccione una opción --</option>
 					          <option value="artist" >Artista</option>
-					          <option value="almbum">Album</option>
+					          <option value="album">Album</option>
 					        </select>
 						</div>
 						<button type="submit" class="btn btn-success mar">Buscar</button>
@@ -60,7 +62,7 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title">Modal title</h4>
+		        <h4 id="modalTitle" class="modal-title"></h4>
 		      </div>
 		      <div class="modal-body">
 		        <p>One fine body…</p>
