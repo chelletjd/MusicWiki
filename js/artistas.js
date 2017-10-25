@@ -1,7 +1,8 @@
 var formBusqueda = document.querySelector('#buscArt');
 var artista = document.querySelector('#artista');
 var tipo = document.querySelector('#selector');
-var token = 'BQD2MTOlR1chHxx0WV8sl31DBqNOLdi8FvzH9MNP2NA0UkBqrVWqVRrokuwViv5YQ-tnlVWAoGfEX8ZTwoqV8JB7Qn8ep5UqIoilgu8LqVCqDsHnj3BtHmStAwcgpEMxCf6oIYcK0-gnb0rX4Hohev4PynOMxfE'
+var artName;
+var token = 'BQAqTEOybuleL00ghJqSFZPP38GzF7lCno4qUcCQ2baOtJ5D_r4kk-jr3wNFZqCnXpBqakB37gVU4htAyWw5MBiX2pnfOFOG633CCJX6hGrXVKcYSRjCu2eWzNvyU9woTeO9xilNf0xsLK-yzYvCfMTfyqddhuk'
 formBusqueda.addEventListener('submit', function (e) {
 	e.preventDefault();
 	let xhr = new XMLHttpRequest();
@@ -12,7 +13,6 @@ formBusqueda.addEventListener('submit', function (e) {
 			let json = JSON.parse(xhr.responseText).artists.items;
 			console.log(json);
 			var artResult = document.querySelector('#artistasResult');
-			var modalHeader = document.querySelector('#modalTitle');
 			artResult.innerHTML = "";
 			artista.value = "";
 			json.map(function (value) {
@@ -23,20 +23,32 @@ formBusqueda.addEventListener('submit', function (e) {
 				<h3>${value.name}</h3>
 				</div>
 				`;
-				var idImg = document.querySelector("#" + value.id);
 
-				idImg.addEventListener('click', function (arg) {
-					let xh = new XMLHttpRequest();
-					xh.open('GET','https://api.spotify.com/v1/search?q=' + artista.value + '&type=' + tipo.value ,false);
-					xh.setRequestHeader("Authorization",'Bearer '+ token);
-					xh.onload = () => {
-						
-					}
+				artName = value.name;
 
 
-				});
+				setTimeout(function(){
+					document.getElementById(value.id).parentElement.addEventListener('click', function (arg) {
+						let xh = new XMLHttpRequest();
+						xh.open('GET',`https://api.spotify.com/v1/artists/${arg.target.id}/albums` ,true);
+						xh.setRequestHeader("Authorization",'Bearer '+ token);
+						xh.onload = () => {
+							let jso = JSON.parse(xh.responseText).items;
+							console.log(jso);
+							var modalHeader = document.querySelector('#modalTitle');
 
+							modalHeader.innerHTML = artName;
+							// jso.map(function (ar) {
+							// 	if (ar.album_type = 'album') {
+							// 		modalHeader.innerHTML = ar.artists[0].name;
+							// 	}
+								
 
+							// });
+						}
+						xh.send();
+					});
+				}, 0);
 			});
 		}else if (tipo.value == 'album') {
 			let json = JSON.parse(xhr.responseText).albums.items;
