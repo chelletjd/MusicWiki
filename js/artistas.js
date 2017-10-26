@@ -32,6 +32,10 @@ formBusqueda.addEventListener('submit', function (e) {
 				`; 
 				setTimeout(function(){
 					document.getElementById(value.id).parentElement.addEventListener('click', function (arg) {
+						var modalHeader = document.querySelector('#modalTitle');
+						var modalBody = document.querySelector('#modalBody');
+						modalBody.innerHTML = "";
+						modalHeader.innerHTML = "";
 						let xh = new XMLHttpRequest();
 						var name = arg.target.name;
 						console.log(name);
@@ -40,17 +44,14 @@ formBusqueda.addEventListener('submit', function (e) {
 						xh.onload = () => {
 							let jso = JSON.parse(xh.responseText).items;
 							console.log('jso  '+jso);
-							var modalHeader = document.querySelector('#modalTitle');
-							var modalBody = document.querySelector('#modalBody');
-							modalHeader.innerHTML = "";
-							modalBody.innerHTML = "";
+							
 							modalHeader.innerHTML = name + " - Albums";
 							jso.map(function (a) {
 									if (a.album_type == 'album') {console.log('album')
 									console.log("aaa  " + a.id);
 									modalBody.innerHTML += `
 									<img name="${a.name}" id="${a.id}" class="img-responsive center-block imag-sm" src="${typeof(a.images[1]) != "undefined" ? a.images[1].url : '../img/not-found.png'}"/></a>
-									<h5>${a.name}</h5>
+									<h5 class="text-center">${a.name}</h5>
 									</div>
 									`; 
 								}
@@ -86,11 +87,13 @@ formBusqueda.addEventListener('submit', function (e) {
 							console.log(jso);
 							var modalHeader = document.querySelector('#modalTitle');
 							var modalBody = document.querySelector('#modalBody');
+							modalHeader.innerHTML = "";
+							modalBody.innerHTML = "";
 							modalHeader.innerHTML = name + " - Canciones";
 							jso.map(function (a) {
 								console.log("aaa  " + a.id);
 								modalBody.innerHTML += `
-								<a href="${a.preview_url}"><h5>${a.name}</h5></a>
+								<a href="${a.preview_url}" target="_blank"><h5>${a.name}</h5></a>
 								`; 
 							});
 											
