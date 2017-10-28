@@ -3,6 +3,15 @@ if(getHashParams().access_token){
    window.location = "artistas.html";
 }
 
+if (token != "") {
+	var bar = document.querySelector('#barra');
+	bar.innerHTML += `
+		<ul class="nav navbar-nav navbar-right">
+          <li id="activar"><a><span class="glyphicon glyphicon-ok-circle verde"></span>  Disponible</a></li>
+        </ul>
+        `;
+}
+
 var token = localStorage.getItem("token");
 var formBusqueda = document.querySelector('#buscArt');
 var artista = document.querySelector('#artista');
@@ -92,8 +101,17 @@ formBusqueda.addEventListener('submit', function (e) {
 							modalHeader.innerHTML = name + " - Canciones";
 							jso.map(function (a) {
 								console.log("aaa  " + a.id);
+								var dispo;
+								if (a.preview_url != null) {
+									dispo = '<span class="label label-success">Disponible</span>';
+									console.log('cancion disponible');
+								} else {
+									dispo = '<span class="label label-danger">No Disponible</span>';
+									console.log('cancion no disponible');
+								}
 								modalBody.innerHTML += `
 								<a href="${a.preview_url}" target="_blank"><h5>${a.name}</h5></a>
+								${dispo}
 								`; 
 							});
 											
