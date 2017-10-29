@@ -34,7 +34,7 @@ formBusqueda.addEventListener('submit', function (e) {
 			json.map(function (value) {
 				console.log("value  " + value.id);
 				artResult.innerHTML += `
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-center">
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-center modal-div-lg">
 				<a data-toggle="modal" data-target="#myModal"><img name="${value.name}" id="${value.id}" class="img-responsive center-block imag" src="${typeof(value.images[1]) != "undefined" ? value.images[1].url : '../img/not-found.png'}"/></a>
 				<h3>${value.name}</h3>
 				</div>
@@ -59,8 +59,9 @@ formBusqueda.addEventListener('submit', function (e) {
 									if (a.album_type == 'album') {console.log('album')
 									console.log("aaa  " + a.id);
 									modalBody.innerHTML += `
-									<img name="${a.name}" id="${a.id}" class="img-responsive center-block imag-sm" src="${typeof(a.images[1]) != "undefined" ? a.images[1].url : '../img/not-found.png'}"/></a>
-									<h5 class="text-center">${a.name}</h5>
+									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 modal-div">
+										<img name="${a.name}" id="${a.id}" class="img-responsive center-block imag-sm" src="${typeof(a.images[1]) != "undefined" ? a.images[1].url : '../img/not-found.png'}"/></a>
+										<h5 class="text-center">${a.name}</h5>
 									</div>
 									`; 
 								}
