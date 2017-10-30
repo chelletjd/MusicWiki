@@ -60,3 +60,5 @@ function eventSlideCarousel(){
 		}
 		clickEvent = false;
 }
+
+

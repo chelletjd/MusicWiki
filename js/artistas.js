@@ -2,8 +2,9 @@ if(getHashParams().access_token){
    localStorage.setItem("token",getHashParams().access_token);
    window.location = "artistas.html";
 }
+var token = localStorage.getItem("token");
 
-if (token != "") {
+if (token != undifined) {
 	var bar = document.querySelector('#barra');
 	bar.innerHTML += `
 		<ul class="nav navbar-nav navbar-right">
@@ -12,7 +13,7 @@ if (token != "") {
         `;
 }
 
-var token = localStorage.getItem("token");
+
 var formBusqueda = document.querySelector('#buscArt');
 var artista = document.querySelector('#artista');
 var tipo = document.querySelector('#selector');
