@@ -4,7 +4,7 @@ if(getHashParams().access_token){
 }
 var token = localStorage.getItem("token");
 
-if (token != undifined) {
+if (token != 'undifined') {
 	var bar = document.querySelector('#barra');
 	bar.innerHTML += `
 		<ul class="nav navbar-nav navbar-right">
@@ -25,6 +25,13 @@ formBusqueda.addEventListener('submit', function (e) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET','https://api.spotify.com/v1/search?q=' + artista.value + '&type=' + tipo.value ,false);
 	xhr.setRequestHeader("Authorization",'Bearer '+ token);
+	if (artista.value === "") {
+		formBusqueda.innerHTML += `
+			<div class="alert alert-dismissible alert-danger">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>Debe colocar el nombre del Artista o Album a consultar.</strong>
+			</div>`;
+	}
 	xhr.onload = () =>{
 		if (tipo.value == 'artist') {
 			let json = JSON.parse(xhr.responseText).artists.items;
@@ -32,6 +39,14 @@ formBusqueda.addEventListener('submit', function (e) {
 			var artResult = document.querySelector('#artistasResult');
 			artResult.innerHTML = "";
 			artista.value = "";
+			if (json.length == 0) {
+					artResult.innerHTML += `
+					<div class="alert alert-dismissible alert-danger">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>Artista no encontrado.</strong> Verifique la busqueda.
+					</div>`;
+					//alert("Artista no encontrado. Verifique la busqueda.")
+				}
 			json.map(function (value) {
 				console.log("value  " + value.id);
 				artResult.innerHTML += `
@@ -79,6 +94,14 @@ formBusqueda.addEventListener('submit', function (e) {
 			var artResult = document.querySelector('#artistasResult');
 			artResult.innerHTML = "";
 			artista.value = "";
+			if (json.length == 0) {
+					artResult.innerHTML += `
+					<div class="alert alert-dismissible alert-danger">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>Album no encontrado.</strong> Verifique la busqueda.
+					</div>`;
+					//alert("Artista no encontrado. Verifique la busqueda.")
+				}
 			json.map(function (value) {
 				artResult.innerHTML += `
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-center">
@@ -124,7 +147,12 @@ formBusqueda.addEventListener('submit', function (e) {
 			});
 
 		}else{
-			alert("Debe seleccionar una categoria de busqueda");
+		formBusqueda.innerHTML += `
+			<div class="alert alert-dismissible alert-danger">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>Debe seleccionar una categoria de busqueda.</strong>
+			</div>`;
+	
 		}
 	}
 	xhr.send();
