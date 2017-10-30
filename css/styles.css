@@ -31,7 +31,7 @@ hr.style6 {
 }
 
 .modal-div-lg{
-	height: 400px;
+	height: 450px;
 }
 .verde{
 	color: green;
@@ -60,7 +60,7 @@ li {
 	position: fixed;
 	left: 0;
 	right: 0;
-	top: 10px;
+	top: 0;
 	z-index: 1000;
 }
 
