@@ -1,9 +1,10 @@
+//Obtener un nuevo token
 var active = document.querySelector('#activar');
 var clickEvent = false;
 
 active.addEventListener('click', function (even) {
 	even.preventDefault();
-
+	//Variables para la api
 	var client_id = '509dbc14e3454368ab55705e72429a68'; // Tu Client ID
 	var redirect_uri = 'http://localhost:3000/artistas.html'; // Tu Redirect URI (Direccion URL a donde quieres que redireccione luego de iniciar Sesion Con tu cuenta de Spotify.)
 	var state = generateRandomString(16);
@@ -16,7 +17,7 @@ active.addEventListener('click', function (even) {
 	url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
 	url += '&state=' + encodeURIComponent(state);
 	window.location = (url);
-
+	//Funcion para generar codigo 
 	function generateRandomString(length) {
 	  var text = '';
 	  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -26,7 +27,7 @@ active.addEventListener('click', function (even) {
 	  return text;
 	};
 });
-
+//Evento del Carrusel
 document.addEventListener('DOMContentLoaded', function() {
     $('#myCarousel').carousel({
 		interval:   4000
@@ -45,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 });
+
+//Funcion del carrusel
 
 function eventSlideCarousel(){
 	if(!clickEvent) {

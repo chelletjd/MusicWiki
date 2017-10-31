@@ -1,76 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8" >
-	<title>Artistas - MusicWiki</title>
-	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="./css/styles.css">
+    <meta charset="UTF-8">
+    <title>Artistas - MusicWiki</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" type="image/png" href="img/icon.png" />
 </head>
+
 <body>
-<nav class="navbar navbar-default barra">
-  <div class="container-fluid">
-    <div class="navbar-header">
-	    <a class="navbar-brand" href="index.html">MusicWiki</a>
-	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	      <span class="sr-only">Toggle navigation</span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	    </button>
+	<!-- Barra de Navegación -->
+    <nav class="navbar navbar-default barra">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">MusicWiki</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li class="active"><a href="artistas.html">Busca tu musica Aqui</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="barra">
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+    	<!-- Formulario de Busqueda -->
+        <div class="row text-center top">
+            <h1 class="top">Buscar Artista</h1>
+            <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <form id="buscArt">
+                    <div class="form-group">
+                        <input id="artista" class="form-control mar" type="text" name="artista" placeholder="Buscar...">
+                        <div class="">
+                            <select class="form-control" id="selector">
+                                <option disabled selected value>-- Seleccione una opción --</option>
+                                <option value="artist">Artista</option>
+                                <option value="album">Album</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success mar">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Mensajes de Error -->
+        <div class="row">
+            <div id="warning" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            </div>
+        </div>
+        <!-- Barrita de Separacion -->
+        <div class="row">
+            <div class="col-xs-12">
+                <hr class="style6">
+            </div>
+        </div>
+        <!-- Resultados de Busqueda -->
+        <div id="artistasResult" class="row">
+        </div>
+        <!-- Footer -->
+        <div class="container-fluid">
+	        <footer class="footer1">
+	            <div class="footer">
+	                <div class="container">
+	                    <div class="row">
+	                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	                            <div class="footer-desc text-center">
+	                                <p>
+	                                    Proyecto de FrontEnd Realizado para 4Geeks. Programación Web FullStack.
+	                                    <br> Ing. Michelle Torres.
+	                                </p>
+	                            </div>
+	                        </div>
+	                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	                            <ul class="social">
+	                                <li><a href="https://www.facebook.com/michelle.torres19"><i class="fa fa-facebook"></i></a></li>
+	                                <li><a href="https://twitter.com/ChelleT_JD"><i class="fa fa-twitter"></i></a></li>
+	                                <li><a href="http://www.instagram.com/chellet_jd"><i class="fa fa-instagram"></i></a></li>
+	                                <li><a href="https://www.linkedin.com/in/michelle-torres-9301a69b/"><i class="fa fa-linkedin"></i></a></li>
+	                            </ul>
+	                        </div>
+	                    </div>
+	                    <!--/.row-->
+	                </div>
+	                <!--/.container-->
+	            </div>
+	            <!--/.footer-->
+	            <div class="footer-bottom">
+	                <div class="container-fluid">
+	                    <div class="pull-left"> Copyright © <a href="">Ing. Michelle Torres</a>.  Hecho con <i class="fa fa-heart-o"></i>.</div>
+	                </div>
+	            </div>
+	            <!--/.footer-bottom-->
+	        </footer>
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 id="modalTitle" class="modal-title"></h4>
+                    </div>
+                    <div class="row modal-body modalpaddin" id="modalBody">
+                    </div>
+                    <div class="row modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="barra" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="index.html">Inicio</a></li>
-         	<li class="active"><a href="artistas.html">Busca tu musica Aqui</a></li>
-        <li><a href="#">Musica Nueva<span class="sr-only">(current)</span></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class="container-fluid">
-	<div class="row text-center top">
-		<h1 class="top">Buscar Artista</h1>
-		<div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-			<form id="buscArt">
-				<div class="form-group">
-					<input id="artista" class="form-control mar" type="text" name="artista" placeholder="Buscar...">
-					<div class="">
-						<select class="form-control" id="selector">
-						  <option disabled selected value>-- Seleccione una opción --</option>
-				          <option value="artist" >Artista</option>
-				          <option value="album">Album</option>
-				        </select>
-					</div>
-					<button type="submit" class="btn btn-success mar">Buscar</button>
-				</div>
-			</form>
-		</div>
-		<div class="col-xs-12">
-			<hr class="style6">
-		</div>
-	</div>
-	<div id="artistasResult" class="row">
-		
-	</div>
-	<div class="modal fade" id="myModal" role="dialog">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 id="modalTitle" class="modal-title"></h4>
-	      </div>
-	      <div class="row modal-body" id="modalBody">
-	      </div>
-	      <div class="row modal-footer">
-	        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-</div>
-<script src="lib/bootstrap/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="lib/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-<script src="js/artistas.js" type="text/javascript"></script>
+    <script src="lib/bootstrap/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="lib/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/artistas.js" type="text/javascript"></script>
 </body>
+
 </html>
