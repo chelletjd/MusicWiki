@@ -6,7 +6,7 @@ active.addEventListener('click', function (even) {
 	even.preventDefault();
 	//Variables para la api
 	var client_id = '509dbc14e3454368ab55705e72429a68'; // Tu Client ID
-	var redirect_uri = 'http://localhost:3000/artistas.html'; // Tu Redirect URI (Direccion URL a donde quieres que redireccione luego de iniciar Sesion Con tu cuenta de Spotify.)
+	var redirect_uri = 'https://chelletjd.github.io/MusicWiki/artistas.html'; // Tu Redirect URI (Direccion URL a donde quieres que redireccione luego de iniciar Sesion Con tu cuenta de Spotify.)
 	var state = generateRandomString(16);
 	localStorage.setItem('spotify', state);
 	var scope = 'user-read-private user-read-email';
